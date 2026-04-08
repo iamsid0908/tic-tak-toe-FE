@@ -1,0 +1,325 @@
+.game-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.game-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 36px 36px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.game-logo {
+  display: flex;
+  gap: 3px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.game-logo-x { color: var(--accent); }
+.game-logo-o { color: var(--text); }
+
+.game-leave-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.game-leave-btn:hover {
+  border-color: var(--text);
+  color: var(--text-h);
+}
+
+/* ── Players panel ────────────────────────────────────────────────────── */
+
+.game-players {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+  gap: 8px;
+}
+
+.game-player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.game-player-right {
+  flex-direction: row-reverse;
+}
+
+.game-player-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.player-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.game-player-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 1px;
+}
+
+.game-player-details-right {
+  align-items: flex-end;
+}
+
+.game-player-mark {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.game-player-label {
+  font-size: 10px;
+  color: var(--text);
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+.game-player-name {
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 110px;
+  line-height: 1.3;
+}
+
+.game-vs-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  opacity: 0.35;
+  flex-shrink: 0;
+  letter-spacing: 0.1em;
+  align-self: center;
+}
+
+/* ── Badge ────────────────────────────────────────────────────────────── */
+
+.game-badge {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+
+.game-sym {
+  font-weight: 700;
+  font-size: 15px;
+}
+.game-sym-x { color: var(--accent); }
+.game-sym-o { color: var(--text-h); }
+
+/* ── Result banner ────────────────────────────────────────────────────── */
+
+.game-result {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-h);
+  margin-bottom: 16px;
+}
+.game-result-win  { color: #22c55e; }
+.game-result-lose { color: #ef4444; }
+
+/* ── Board ────────────────────────────────────────────────────────────── */
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.game-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-family: var(--heading, var(--sans));
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: default;
+  transition: background 0.1s, transform 0.08s;
+  color: transparent; /* hidden until filled */
+  line-height: 1;
+  padding: 0;
+}
+
+/* Filled cells */
+.game-cell-x {
+  color: var(--accent);
+  cursor: default;
+}
+.game-cell-o {
+  color: var(--text-h);
+  cursor: default;
+}
+
+/* Clickable (empty, my turn) */
+.game-cell-clickable {
+  cursor: pointer;
+}
+.game-cell-clickable:hover {
+  background: var(--accent-bg, rgba(170, 59, 255, 0.08));
+  border-color: var(--accent-border, rgba(170, 59, 255, 0.3));
+}
+.game-cell-clickable:active {
+  transform: scale(0.93);
+}
+
+/* ── Turn indicator + timer ───────────────────────────────────────────── */
+
+.game-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 4px;
+}
+
+.game-turn {
+  font-size: 14px;
+  color: var(--text);
+  margin: 0;
+  transition: color 0.2s;
+}
+.game-turn-mine {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.turn-timer {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.turn-timer-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Connecting / error states ────────────────────────────────────────── */
+
+.game-connecting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
+  margin: 24px 0;
+}
+
+.game-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.game-error {
+  font-size: 13px;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 8px 0;
+}
+
+/* ── Back to lobby button ─────────────────────────────────────────────── */
+
+.game-lobby-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  min-height: 44px;
+}
+.game-lobby-btn:hover  { opacity: 0.88; }
+.game-lobby-btn:active { transform: scale(0.98); }
