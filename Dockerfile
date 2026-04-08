@@ -22,7 +22,7 @@ ENV VITE_NAKAMA_REFRESH_KEY=$VITE_NAKAMA_REFRESH_KEY
 
 # Install dependencies (cached layer)
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Copy source and build
 COPY . .
