@@ -5,10 +5,10 @@
 
 import { Client, Session } from "@heroiclabs/nakama-js";
 
-const HOST    = import.meta.env.VITE_NAKAMA_HOST  ?? "localhost";
-const PORT    = import.meta.env.VITE_NAKAMA_PORT  ?? "7350";
-const USE_SSL = import.meta.env.VITE_NAKAMA_USE_SSL === "true";
-const SERVER_KEY = "defaultkey";
+const HOST       = import.meta.env.VITE_NAKAMA_HOST ?? "localhost";
+const PORT       = import.meta.env.VITE_NAKAMA_PORT ?? "7350";
+const USE_SSL    = import.meta.env.VITE_NAKAMA_USE_SSL === "true";
+const SERVER_KEY = import.meta.env.VITE_NAKAMA_BASIC_AUTH;
 
 const TOKEN_KEY   = import.meta.env.VITE_NAKAMA_TOKEN_KEY;
 const REFRESH_KEY = import.meta.env.VITE_NAKAMA_REFRESH_KEY;
@@ -126,7 +126,7 @@ export async function getPlayerStats(session: Session): Promise<PlayerStats> {
 // ---------------------------------------------------------------------------
 
 export function createSocket() {
-  return nakamaClient.createSocket(false, USE_SSL);
+  return nakamaClient.createSocket(USE_SSL, false);
 }
 
 // ---------------------------------------------------------------------------
